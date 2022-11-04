@@ -1,11 +1,12 @@
 package com.example.employee_payroll_deployment.Dto;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.Pattern;
+
+import javax.validation.constraints.*;
+import java.time.LocalDate;
+import java.util.List;
 
 @Data
 @ToString
@@ -15,23 +16,30 @@ import javax.validation.constraints.Pattern;
 
 @AllArgsConstructor              //generates a constructor with 1 parameter for each field in your class.
 public class EmployeeDto {
-    private int id;
-
     //to achieve regular expression validation.
     @Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]{2,}$", message = "Employee name Invalid: It should have at least 2 characters starting with Capital letter.")
-    private String employeeName;
+    public String employeeName;
+    public String profilePic;
+    public String notes;
 
 
     @Min(value = 10000, message = "salary cannot be less than 10000.")    //ExceptionHandler
 
-    @Max(value = 500000, message = "Salary cannot be greater than 500000.")   //ExceptionHandler
-    private long salary;
+    @Max(value = 1000000, message = "Salary cannot be greater than 80000.")   //ExceptionHandler
+    public long salary;
 
-    @Pattern(regexp = "^[M/F]{1}$", message = "Please enter valid option gender.")
-    private String gender;
+    @NotNull(message = "Please enter valid option gender.")
+    public String gender;
 
-    @NotBlank(message = "Department is Required")
-    private String department;
+   // @JsonFormat(pattern = "dd MM yyyy")
+   // @NotNull(message = "StartDate Should Not be Empty")
+   // @PastOrPresent(message = "startDate should be past or todays date")
+    public String startDate;
 
+    //@NotBlank(message = "Department is Required")
+    public List<String> department;
 
 }
+
+
+
