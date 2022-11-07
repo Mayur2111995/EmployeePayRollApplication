@@ -36,7 +36,8 @@ public class EmployeeDto {
    // @PastOrPresent(message = "startDate should be past or todays date")
     public String startDate;
 
-    //@NotBlank(message = "Department is Required")
+   // @NotBlank(message = "Department is Required")
+   @NotNull(message = "department should not be empty")
     public List<String> department;
 
 }

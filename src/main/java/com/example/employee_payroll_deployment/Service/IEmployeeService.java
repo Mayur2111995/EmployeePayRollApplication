@@ -13,9 +13,20 @@ public interface IEmployeeService {
     //EmployeeDto AddEmployee(EmployeeDto employeeDto);
 
     Response getById(int id);
-    Response updateEmployee(int id, EmployeeDto employeeDto);
+
+
     Response deleteEmployee(int id);
 
+
+
     List<Employee> getByDepartment(String department);
+
+   // Employee updateEmployee(int id, EmployeeDto employeeDto);
+
+    Response updateEmployee(int id, EmployeeDto employeeDto);
+
+   // Employee updateEmployeePayrollData(int empId, EmployeeDto employeeDto);
+
+    // Object editEmployee(EmployeeDto employeeDto, int id);
 
 }

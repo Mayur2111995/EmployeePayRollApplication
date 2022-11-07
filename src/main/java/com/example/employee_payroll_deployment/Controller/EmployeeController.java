@@ -2,8 +2,10 @@ package com.example.employee_payroll_deployment.Controller;
 
 import com.example.employee_payroll_deployment.Dto.EmployeeDto;
 import com.example.employee_payroll_deployment.Dto.Response;
+import com.example.employee_payroll_deployment.Exception.GlobalException;
 import com.example.employee_payroll_deployment.Model.Employee;
 import com.example.employee_payroll_deployment.Service.IEmployeeService;
+import org.aspectj.bridge.Message;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,8 +40,6 @@ public class EmployeeController {
         Response response = employeeService.addEmployee(employeeDto);
         return new ResponseEntity<>(response,HttpStatus.OK);
     }
-
-
 
     @PutMapping("/updateEmployee/{id}")
     public ResponseEntity<Response> updateEmployee(@Valid @RequestBody EmployeeDto employeeDto, @PathVariable int id) {

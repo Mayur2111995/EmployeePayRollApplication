@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public  class EmployeeService implements IEmployeeService {
@@ -37,11 +38,22 @@ public  class EmployeeService implements IEmployeeService {
     }
 
     public Response updateEmployee(int id, EmployeeDto employeeDto) {
-        Employee employee = new Employee(employeeDto);
-        employeeRepository.save(employee);
-        return new Response("Employee info udpdate succefully",100,employee);
-    }
+        Optional<Employee> isEmpPresent = employeeRepository.findById(id);
+        if(isEmpPresent.isPresent()){
+            isEmpPresent.get().setEmployeeName(employeeDto.employeeName);
+            isEmpPresent.get().setStartDate(employeeDto.startDate);
+            isEmpPresent.get().setNotes(employeeDto.getNotes());
+            isEmpPresent.get().setGender(employeeDto.getGender());
+            isEmpPresent.get().setSalary(employeeDto.salary);
+            isEmpPresent.get().setDepartment(employeeDto.getDepartment());
+            isEmpPresent.get().setProfilePic(employeeDto.profilePic);
 
+            employeeRepository.save(isEmpPresent.get());
+
+        }
+
+        return new Response("Employee info udpdate succefully",100,isEmpPresent.get());
+    }
     public Response deleteEmployee(int id) {
         return new Response("Employee info delete",100, employeeRepository.deleteById(id));
     }

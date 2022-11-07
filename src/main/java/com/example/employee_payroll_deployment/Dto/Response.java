@@ -1,5 +1,7 @@
 package com.example.employee_payroll_deployment.Dto;
 
+import com.example.employee_payroll_deployment.Model.Employee;
+
 public class Response {
 
     private String responseMessage;
@@ -14,7 +16,6 @@ public class Response {
         this.responseStatus = responseStatus;
         this.responseData = responseData;
     }
-
     public String getResponseMessage() {
         return responseMessage;
     }
@@ -37,5 +38,10 @@ public class Response {
 
     public void setResponseData(Object responseData) {
         this.responseData = responseData;
+    }
+
+
+    public void updateData(EmployeeDto employeeDto) {
+
     }
 }

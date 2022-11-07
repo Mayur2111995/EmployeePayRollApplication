@@ -17,12 +17,13 @@ public class Employee {
 
    @Id   //Primary Key
    @GeneratedValue (strategy = GenerationType.AUTO)
-    public int employeeId;
+    public int id;
     public String employeeName;
     public long salary;
     public String notes;
     public String gender;
     @ElementCollection
+   // @CollectionTable(name = "department", joinColumns = @JoinColumn(name = "id"))
     public List<String> department;
     public String profilePic;
 
@@ -33,7 +34,8 @@ public class Employee {
         this.employeeName=employeeDto.getEmployeeName();
         this.salary=employeeDto.getSalary();
         this.gender=employeeDto.getGender();
-        this.department= Collections.singletonList(employeeDto.getDepartment().toString());
+        this.department=employeeDto.getDepartment();
+      //this.department= Collections.singletonList(employeeDto.getDepartment().toString());
         this.startDate=employeeDto.getStartDate();
         this.profilePic=employeeDto.getProfilePic();
         this.notes=employeeDto.getNotes();
